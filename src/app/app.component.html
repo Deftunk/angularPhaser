@@ -5,5 +5,10 @@
 <h2>Here is a game in development:</h2>
 
 <button (click)="startGame()">Start the game</button>
+<button *ngIf="soundExist();" (click)="switchSound()">
+    <div *ngIf="wtf.sound.mute; then thenBlock; else elseBlock"></div>
+    <ng-template #thenBlock> Turn sound on</ng-template>
+    <ng-template #elseBlock> Turn sound off</ng-template>
+</button>
 
 <router-outlet></router-outlet>
