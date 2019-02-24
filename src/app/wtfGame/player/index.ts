@@ -1,6 +1,9 @@
 import { Sprite, Game, Keyboard } from 'phaser-ce';
+import { Character } from './../characters';
 
 export default class Player extends Sprite {
+    character: Character;
+
     constructor(game: Game, x: number, y: number) {
         super(game, x, y, 'ff10', 0);
 
@@ -8,26 +11,61 @@ export default class Player extends Sprite {
         this.scale.multiply(2, 2);
         this.body.collideWorldBounds = true;
         this.body.bounce.y = 0.1;
-
         this.anchor.setTo(0.5, 0);
-
-        this.animations.add('walk', [0, 12], 10, true);
-        this.animations.add('leftWalk', [12, 13, 14], 10, false);
-        this.animations.add('rightWalk', [24, 25, 26], 10, false);
         game.add.existing(this);
     }
 
-    update() {
-        this.body.velocity.x = 0;
+    public changeCharacter(character: Character) {
+        this.character = character;
+        this.animations.add(
+            'leftWalk',
+            this.character.getLeftFrames(),
+            10,
+            false
+        );
+        this.animations.add(
+            'rightWalk',
+            this.character.getRightFrames(),
+            10,
+            false
+        );
+    }
 
-        if (this.game.input.keyboard.isDown(Keyboard.LEFT)) {
-            this.body.velocity.x = -300;
-            this.animations.play('leftWalk');
-        } else if (this.game.input.keyboard.isDown(Keyboard.RIGHT)) {
-            this.body.velocity.x = 300;
-            this.animations.play('rightWalk');
-        } else if (this.game.input.keyboard.isDown(Keyboard.DOWN)) {
-            this.animations.frame = 0;
+    public update() {
+        console.log('update');
+        this.body.velocity.x = 0;
+        if (this.leftKeyPressed()) {
+            this.goToTheLeft();
+        } else if (this.rightKeyPressed()) {
+            this.goToTheRight();
+        } else if (this.downKeyPressed()) {
+            this.stop();
         }
+    }
+
+    private stop(): void {
+        this.animations.frame = 0;
+    }
+
+    private goToTheLeft(): void {
+        this.body.velocity.x = -this.character.actualSpeed;
+        this.animations.play('leftWalk');
+    }
+
+    private goToTheRight(): void {
+        this.body.velocity.x = this.character.actualSpeed;
+        this.animations.play('rightWalk');
+    }
+
+    private downKeyPressed(): boolean {
+        return this.game.input.keyboard.isDown(Keyboard.DOWN);
+    }
+
+    private rightKeyPressed(): boolean {
+        return this.game.input.keyboard.isDown(Keyboard.RIGHT);
+    }
+
+    private leftKeyPressed(): boolean {
+        return this.game.input.keyboard.isDown(Keyboard.LEFT);
     }
 }

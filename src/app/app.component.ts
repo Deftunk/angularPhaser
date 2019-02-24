@@ -20,11 +20,12 @@ export class AppComponent {
             parent: '',
             resolution: 1,
         };
+        this.wtf = new WtfGame(this.config);
         // this.startGame();
     }
 
     startGame() {
-        this.wtf = !this.wtf ? new WtfGame(this.config) : this.wtf;
+        this.wtf.startGame();
         // this.sampleGame = new SampleGame();
     }
 
