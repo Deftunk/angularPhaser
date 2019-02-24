@@ -6,10 +6,11 @@ export default class Title extends State {
     music: Sound;
 
     create() {
+        this.stage.backgroundColor = '#353232';
         this.music = this.add.audio('titleMusic');
         this.music.play();
 
-        this.background = this.add.sprite(0, 0, 'titlepage');
+        this.background = this.add.sprite(75, 45, 'titlepage');
         this.background.alpha = 0;
 
         this.logo = this.add.sprite(this.world.centerX, -300, 'logo');

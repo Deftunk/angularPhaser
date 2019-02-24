@@ -6,9 +6,8 @@ export default class Player extends Sprite {
 
         this.game.physics.arcade.enableBody(this);
         this.scale.multiply(2, 2);
-        this.body.gravity.y = 300;
         this.body.collideWorldBounds = true;
-        this.body.bounce.y = 0.8;
+        this.body.bounce.y = 0.1;
 
         this.anchor.setTo(0.5, 0);
 
@@ -27,7 +26,7 @@ export default class Player extends Sprite {
         } else if (this.game.input.keyboard.isDown(Keyboard.RIGHT)) {
             this.body.velocity.x = 300;
             this.animations.play('rightWalk');
-        } else {
+        } else if (this.game.input.keyboard.isDown(Keyboard.DOWN)) {
             this.animations.frame = 0;
         }
     }

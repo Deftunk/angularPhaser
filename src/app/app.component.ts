@@ -10,12 +10,12 @@ import { AUTO, IGameConfig } from 'phaser-ce';
 export class AppComponent {
     config: IGameConfig;
     wtf: WtfGame;
-    title = 'angularPhaser';
+    title = 'Final fantasy WTF';
 
     constructor() {
         this.config = {
-            width: 16 * 80,
-            height: 9 * 80,
+            width: 16 * 90,
+            height: 9 * 90,
             renderer: AUTO,
             parent: '',
             resolution: 1,
