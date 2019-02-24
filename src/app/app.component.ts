@@ -1,4 +1,4 @@
-import { Component, wtfCreateScope } from '@angular/core';
+import { Component } from '@angular/core';
 import { WtfGame } from './wtfGame/wtfGame';
 import { AUTO, IGameConfig } from 'phaser-ce';
 

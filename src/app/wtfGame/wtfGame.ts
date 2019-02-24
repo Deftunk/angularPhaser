@@ -1,8 +1,6 @@
 import { Game, IGameConfig } from 'phaser-ce';
-import Boot from './states/boot';
-import Preloader from './states/preloader';
-import Title from './title';
-import Level1 from './level1';
+import { Boot, Preloader, Title } from './states';
+import { Level1 } from './levels';
 
 export class WtfGame extends Game {
     public gameConfig: IGameConfig;
