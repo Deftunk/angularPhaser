@@ -1,15 +1,12 @@
-import { Game, IGameConfig, Timer } from 'phaser-ce';
+import { Game, IGameConfig } from 'phaser-ce';
 import { Boot, Preloader, Title } from './states';
 import { Level1 } from './levels';
 import Player from './player';
-import { timeout } from 'q';
-import { resolve } from 'path';
 
 export class WtfGame extends Game {
     public gameConfig: IGameConfig;
     public player: Player;
     private level1: Level1;
-    private timerToStart;
 
     constructor(config: IGameConfig) {
         super(config);
@@ -22,7 +19,6 @@ export class WtfGame extends Game {
     }
 
     public startGame() {
-        clearInterval(this.timerToStart);
         this.player = new Player(this.level1.game, 130, 284);
         this.level1.addPlayer(this.player);
     }

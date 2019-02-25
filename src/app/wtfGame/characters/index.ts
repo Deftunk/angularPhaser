@@ -16,6 +16,10 @@ export class Character {
         this.speed = speed;
     }
 
+    public get jumpStrength(): number {
+        return this.speed * 2;
+    }
+
     public get actualSpeed(): number {
         return this.speed;
     }
