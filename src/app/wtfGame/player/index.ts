@@ -1,6 +1,8 @@
 import { Sprite, Game, Keyboard } from 'phaser-ce';
 import { Character } from './../characters';
 
+// todo : player does not must extend sprite but character yes
+// and Player can control a current character
 export default class Player extends Sprite {
     character: Character;
 
