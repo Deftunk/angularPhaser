@@ -5,7 +5,13 @@ export default class Title extends State {
     logo: Sprite;
     music: Sound;
 
+    init() {
+        console.log('Title - Initialisation');
+    }
+
     create() {
+        console.log('Title - creation');
+
         this.stage.backgroundColor = '#353232';
         this.music = this.add.audio('titleMusic');
         this.music.play();
@@ -27,14 +33,15 @@ export default class Title extends State {
     }
 
     fadeOut() {
+        console.log('Title - fade out ');
         this.add
             .tween(this.background)
             .to({ alpha: 0 }, 2000, Easing.Linear.None, true);
-        const tween = this.add
+        const logoExitAnimation = this.add
             .tween(this.logo)
             .to({ y: 800 }, 2000, Easing.Linear.None, true);
 
-        tween.onComplete.add(this.startGame, this);
+        logoExitAnimation.onComplete.add(this.startGame, this);
     }
 
     startGame() {

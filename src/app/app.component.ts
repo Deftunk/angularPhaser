@@ -10,7 +10,8 @@ import { AUTO, IGameConfig } from 'phaser-ce';
 export class AppComponent {
     config: IGameConfig;
     wtf: WtfGame;
-    title = 'Final fantasy WTF';
+    title: string;
+    cartridgeInserted: boolean;
 
     constructor() {
         this.config = {
@@ -20,8 +21,13 @@ export class AppComponent {
             parent: '',
             resolution: 1,
         };
+        this.title = 'Final fantasy WTF';
+        this.cartridgeInserted = false;
+    }
+
+    insertCartridge() {
+        this.cartridgeInserted = !this.cartridgeInserted;
         this.wtf = new WtfGame(this.config);
-        // this.startGame();
     }
 
     startGame() {

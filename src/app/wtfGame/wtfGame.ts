@@ -1,12 +1,17 @@
 import { Game, IGameConfig } from 'phaser-ce';
 import { Boot, Preloader, Title } from './states';
 import { Level1 } from './levels';
-import Player from './player';
+import Account from './account';
+import Hero from './hero';
+import Knight from './classes/knight';
+import Skin from './skin';
+
+// import Account from ''
 
 export class WtfGame extends Game {
     public gameConfig: IGameConfig;
-    public player: Player;
     private level1: Level1;
+    private account: Account;
 
     constructor(config: IGameConfig) {
         super(config);
@@ -16,10 +21,19 @@ export class WtfGame extends Game {
         this.state.add('Title', Title, false);
         this.state.add('Level1', this.level1, false);
         this.state.start('boot', true, false);
+        this.account = new Account('Snasch');
     }
 
     public startGame() {
-        this.player = new Player(this.level1.game, 130, 284);
-        this.level1.addPlayer(this.player);
+        this.account.addHero(this.createPopeye());
+        this.level1.addNewPlayer(this.account.getHero('Popeye'));
+    }
+
+    private createPopeye(): Hero {
+        return new Hero(
+            'Popeye',
+            new Knight(),
+            new Skin('ff10', [12, 13, 14], [24, 25, 26])
+        );
     }
 }

@@ -3,6 +3,7 @@
     <h1>Welcome to {{ title }}!</h1>
 </div>
 
+<button (click)="insertCartridge()">Insert Cartridge</button>
 <button (click)="startGame()">Start the game</button>
 <button *ngIf="soundExist();" (click)="switchSound()">
     <div *ngIf="wtf.sound.mute; then thenBlock; else elseBlock"></div>
